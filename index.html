@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#f5a2c4">
+
+<title>ILiana.exe - Portfolio</title>
+
+<style>
+
+:root{
+
+ --pink:#ff79ae;
+
+ --hot:#ed347e;
+
+ --light:#ffd8e9;
+
+ --plum:#70234f;
+
+ --silver:#e9e7ed;
+
+ --white:#fffaff;
+
+ --text:#57233f;
+
+ --shadow:0 8px 30px #741d4940;
+
+}
+
+*{box-sizing:border-box}
+
+body{
+
+ margin:0;
+
+ font-family:Tahoma,Arial,sans-serif;
+
+ color:var(--text);
+
+ background:
+
+ radial-gradient(ellipse at 15% 20%,#ffe5f0 0,transparent 35%),
+
+ radial-gradient(ellipse at 90% 80%,#e98bb8 0,transparent 40%),
+
+ linear-gradient(135deg,#f9b7d2,#f5d7e8,#e9a6c8);
+
+ min-height:100vh;
+
+ overflow-x:hidden;
+
+}
+
+button{font:inherit}
+
+.desktop{
+
+ min-height:100vh;
+
+ padding:24px 18px 75px;
+
+ position:relative;
+
+}
+
+.desktop:before{
+
+ content:"";
+
+ position:fixed;
+
+ inset:0;
+
+ pointer-events:none;
+
+ opacity:.15;
+
+ background-image:radial-gradient(#fff 1px,transparent 1px);
+
+ background-size:13px 13px;
+
+}
+
+.desktop-header{
+
+ max-width:1000px;
+
+ margin:0 auto 22px;
+
+ padding:20px;
+
+ border:2px solid white;
+
+ border-radius:15px;
+
+ background:linear-gradient(145deg,#fff9fc,#f9c5dc 55%,#f49bc1);
+
+ box-shadow:var(--shadow),inset 0 2px 8px white;
+
+ position:relative;
+
+}
+
+.mini-label{
+
+ font-size:9px;
+
+ letter-spacing:3px;
+
+ color:#a54c77;
+
+}
+
+.desktop-header h1{
+
+ font-family:Georgia,serif;
+
+ font-size:clamp(37px,8vw,68px);
+
+ font-weight:normal;
+
+ font-style:italic;
+
+ letter-spacing:-3px;
+
+ color:#a52160;
+
+ margin:13px 0 5px;
+
+ text-shadow:2px 2px white;
+
+}
+
+.desktop-header p{
+
+ font-size:12px;
+
+ line-height:1.8;
+
+ margin:5px 0;
+
+}
+
+.online{
+
+ display:inline-block;
+
+ margin-top:10px;
+
+ padding:6px 12px;
+
+ border-radius:20px;
+
+ background:linear-gradient(90deg,#ed347e,#a92c68);
+
+ color:white;
+
+ font-size:9px;
+
+ letter-spacing:1px;
+
+ box-shadow:inset 0 1px 3px #ffffff80;
+
+}
+
+.desktop-title{
+
+ max-width:1000px;
+
+ margin:0 auto 13px;
+
+ font-size:11px;
+
+ letter-spacing:2px;
+
+ text-transform:uppercase;
+
+}
+
+.icons{
+
+ max-width:1000px;
+
+ margin:auto;
+
+ display:grid;
+
+ grid-template-columns:repeat(2,minmax(0,1fr));
+
+ gap:14px;
+
+}
+
+.desktop-icon{
+
+ border:1px solid #ffffff;
+
+ border-radius:13px;
+
+ padding:17px 9px;
+
+ background:linear-gradient(145deg,#ffffffcc,#f5b4d3cc);
+
+ box-shadow:0 4px 12px #80284b25,inset 0 1px 5px white;
+
+ color:#76244e;
+
+ text-align:center;
+
+ cursor:pointer;
+
+ transition:.18s;
+
+ min-height:120px;
+
+}
+
+.desktop-icon:hover{
+
+ transform:translateY(-4px) scale(1.02);
+
+ background:linear-gradient(145deg,#fff,#ff91bd);
+
+}
+
+.icon-art{
+
+ display:block;
+
+ width:46px;
+
+ height:35px;
+
+ margin:0 auto 12px;
+
+ position:relative;
+
+ border:1px solid #b94178;
+
+ border-radius:5px;
+
+ background:linear-gradient(145deg,#ffd3e6,#ed75aa 70%);
+
+ box-shadow:inset 0 2px 5px white,0 3px 5px #8a295044;
+
+}
+
+.icon-art:before{
+
+ content:"";
+
+ position:absolute;
+
+ top:-8px;
+
+ left:2px;
+
+ width:20px;
+
+ height:8px;
+
+ background:#f7b1d0;
+
+ border:1px solid #b94178;
+
+ border-bottom:0;
+
+ border-radius:4px 4px 0 0;
+
+}
+
+.icon-name{
+
+ display:block;
+
+ font-size:12px;
+
+ font-weight:bold;
+
+}
+
+.icon-desc{
+
+ display:block;
+
+ font-size:9px;
+
+ color:#9b5275;
+
+ margin-top:5px;
+
+}
+
+.window{
+
+ display:none;
+
+ position:fixed;
+
+ z-index:20;
+
+ inset:6% 4%;
+
+ max-width:850px;
+
+ max-height:88vh;
+
+ margin:auto;
+
+ overflow:auto;
+
+ background:#fff8fc;
+
+ border:2px solid white;
+
+ border-radius:12px;
+
+ box-shadow:0 15px 50px #57153670,inset 0 0 0 1px #e9a1c2;
+
+}
+
+.window-bar{
+
+ position:sticky;
+
+ top:0;
+
+ z-index:2;
+
+ min-height:39px;
+
+ padding:7px 10px 7px 15px;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:space-between;
+
+ color:white;
+
+ font-size:11px;
+
+ font-weight:bold;
+
+ background:linear-gradient(90deg,#a82465,#f45a9d,#d8327e);
+
+ border-bottom:2px solid white;
+
+}
+
+.window-actions{display:flex;gap:5px}
+
+.window-actions button{
+
+ width:23px;
+
+ height:22px;
+
+ border:1px solid white;
+
+ border-radius:4px;
+
+ color:#742348;
+
+ background:linear-gradient(#fff,#f5b9d2);
+
+ font-weight:bold;
+
+ cursor:pointer;
+
+}
+
+.window-content{
+
+ padding:22px;
+
+ font-size:13px;
+
+ line-height:1.8;
+
+}
+
+.window-content h2{
+
+ font-family:Georgia,serif;
+
+ font-style:italic;
+
+ color:#a82465;
+
+ font-size:27px;
+
+ font-weight:normal;
+
+ border-bottom:1px solid #f0c1d6;
+
+ padding-bottom:10px;
+
+}
+
+.window-content h3{
+
+ color:#d23b81;
+
+ margin-top:22px;
+
+ font-size:14px;
+
+}
+
+.window-content a{color:#b52368}
+
+.notice{
+
+ padding:14px;
+
+ background:#ffe5f0;
+
+ border-left:4px solid #e94b91;
+
+ margin:15px 0;
+
+}
+
+.gallery{
+
+ display:grid;
+
+ grid-template-columns:repeat(2,minmax(0,1fr));
+
+ gap:12px;
+
+ margin-top:18px;
+
+}
+
+.gallery img{
+
+ display:block;
+
+ width:100%;
+
+ aspect-ratio:1;
+
+ object-fit:cover;
+
+ border:6px solid white;
+
+ border-radius:5px;
+
+ box-shadow:0 3px 12px #7c275044;
+
+ background:#f5d3e2;
+
+}
+
+.photo-placeholder{
+
+ min-height:130px;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:center;
+
+ text-align:center;
+
+ background:linear-gradient(145deg,#ffe2ef,#edb0ce);
+
+ border:1px dashed #c84e87;
+
+ padding:12px;
+
+ font-size:11px;
+
+}
+
+.taskbar{
+
+ position:fixed;
+
+ bottom:0;
+
+ left:0;
+
+ right:0;
+
+ height:49px;
+
+ z-index:30;
+
+ background:linear-gradient(#fa91bb,#d93b83);
+
+ border-top:2px solid white;
+
+ box-shadow:0 -3px 15px #8b295233;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:space-between;
+
+ padding:0 12px;
+
+ color:white;
+
+ font-size:10px;
+
+}
+
+.start-button{
+
+ border:1px solid white;
+
+ border-radius:7px;
+
+ padding:8px 13px;
+
+ background:linear-gradient(#ffb8d6,#d94385);
+
+ color:white;
+
+ font-weight:bold;
+
+ box-shadow:inset 0 1px 4px white;
+
+}
+
+.task-clock{letter-spacing:1px}
+
+.footer{
+
+ text-align:center;
+
+ max-width:1000px;
+
+ margin:35px auto;
+
+ font-size:9px;
+
+ letter-spacing:3px;
+
+ color:#923f6a;
+
+}
+
+.start-screen{
+
+ position:fixed;
+
+ inset:0;
+
+ z-index:100;
+
+ background:radial-gradient(circle at center,#ffb7d4,#b52a70);
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:center;
+
+ text-align:center;
+
+ color:white;
+
+ padding:25px;
+
+}
+
+.boot-box{
+
+ width:min(420px,100%);
+
+ padding:35px 20px;
+
+ background:#ffffff18;
+
+ border:1px solid #ffffff90;
+
+ border-radius:18px;
+
+ box-shadow:0 10px 50px #5b103e55,inset 0 1px 10px #ffffff80;
+
+}
+
+.boot-title{
+
+ font-family:Georgia,serif;
+
+ font-size:38px;
+
+ font-style:italic;
+
+}
+
+.boot-line{
+
+ height:8px;
+
+ background:#ffffff55;
+
+ border-radius:10px;
+
+ overflow:hidden;
+
+ margin:25px 0;
+
+}
+
+.boot-progress{
+
+ height:100%;
+
+ width:0;
+
+ background:white;
+
+ border-radius:10px;
+
+ transition:width 1s ease;
+
+}
+
+.boot-button{
+
+ border:1px solid white;
+
+ padding:12px 23px;
+
+ background:linear-gradient(#fff,#f5c3dc);
+
+ color:#942b60;
+
+ font-weight:bold;
+
+ border-radius:6px;
+
+ cursor:pointer;
+
+}
+
+@media(min-width:650px){
+
+ .icons{grid-template-columns:repeat(4,1fr)}
+
+ .gallery{grid-template-columns:repeat(3,1fr)}
+
+ .window{inset:10% 15%}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="start-screen" id="startScreen">
+
+ <div class="boot-box">
+
+  <div class="mini-label" style="color:white">PERSONAL COMPUTER SYSTEM</div>
+
+  <div class="boot-title">Iliana.exe</div>
+
+  <p style="font-size:11px">Welcome to my little world</p>
+
+  <div class="boot-line">
+
+   <div class="boot-progress" id="progress"></div>
+
+  </div>
+
+  <button class="boot-button" onclick="startComputer()">
+
+   START MY COMPUTER
+
+  </button>
+
+ </div>
+
+</div>
+
+<main class="desktop">
+
+<header class="desktop-header">
+
+ <div class="mini-label">PERSONAL PORTFOLIO · SYSTEM 2000</div>
+
+ <h1>Iliana.exe</h1>
+
+ <p>
+
+  Bienvenue dans mon univers numérique.
+
+  Étudiante en deuxième année de BTS Économie Sociale Familiale,
+
+  je vous invite à découvrir mon parcours.
+
+ </p>
+
+ <span class="online">RECHERCHE DE STAGE · 7 SEMAINES · JANVIER 2027</span>
+
+</header>
+
+<div class="desktop-title">Desktop / Mes dossiers personnels</div>
+
+<section class="icons">
+
+<button class="desktop-icon" onclick="openWindow('profil')">
+
+ <span class="icon-art"></span>
+
+ <span class="icon-name">Présentation</span>
+
+ <span class="icon-desc">about_me.exe</span>
+
+</button>
+
+<button class="desktop-icon" onclick="openWindow('chats')">
+
+ <span class="icon-art"></span>
+
+ <span class="icon-name">Mes chats</span>
+
+ <span class="icon-desc">cat_gallery</span>
+
+</button>
+
+<button class="desktop-icon" onclick="openWindow('photos')">
+
+ <span class="icon-art"></span>
+
+ <span class="icon-name">Photographies</span>
+
+ <span class="icon-desc">my_pictures</span>
+
+</button>
+
+<button class="desktop-icon" onclick="openWindow('formation')">
+
+ <span class="icon-art"></span>
+
+ <span class="icon-name">Formation</span>
+
+ <span class="icon-desc">education</span>
+
+</button>
+
+<button class="desktop-icon" onclick="openWindow('experience')">
+
+ <span class="icon-art"></span>
+
+ <span class="icon-name">Expériences</span>
+
+ <span class="icon-desc">work_history</span>
+
+</button>
+
+<button class="desktop-icon" onclick="openWindow('competences')">
+
+ <span class="icon-art"></span>
+
+ <span class="icon-name">Compétences</span>
+
+ <span class="icon-desc">skills</span>
+
+</button>
+
+<button class="desktop-icon" onclick="openWindow('loisirs')">
+
+ <span class="icon-art"></span>
+
+ <span class="icon-name">Centres d'intérêt</span>
+
+ <span class="icon-desc">my_interests</span>
+
+</button>
+
+<button class="desktop-icon" onclick="openWindow('contact')">
+
+ <span class="icon-art"></span>
+
+ <span class="icon-name">Contact</span>
+
+ <span class="icon-desc">mail.exe</span>
+
+</button>
+
+</section>
+
+<div class="footer">IL I A N A · PERSONAL COMPUTER · 2026</div>
+
+</main>
+
+<div class="window" id="window">
+
+ <div class="window-bar">
+
+  <span id="windowTitle">Dossier</span>
+
+  <div class="window-actions">
+
+   <button onclick="minimizeWindow()">_</button>
+
+   <button onclick="closeWindow()">X</button>
+
+  </div>
+
+ </div>
+
+ <div class="window-content" id="windowContent"></div>
+
+</div>
+
+<div class="taskbar">
+
+ <button class="start-button" onclick="showStart()">IL I A N A</button>
+
+ <span>Personal computer</span>
+
+ <span class="task-clock" id="clock"></span>
+
+</div>
+
+<script>
+
+const pages={
+
+profil:`
+
+<h2>Bienvenue dans mon univers</h2>
+
+<p>Bonjour, je m'appelle Iliana.</p>
+
+<p>Je suis étudiante en deuxième année de BTS Économie Sociale Familiale au lycée Blaise Pascal de Colmar.</p>
+
+<p>Curieuse, créative et motivée, j'aime découvrir de nouveaux environnements, apprendre et participer à des projets qui ont du sens.</p>
+
+<div class="notice">
+
+Je recherche un stage de sept semaines à partir du 4 janvier 2027 pour développer mes compétences professionnelles et découvrir davantage le secteur social.
+
+</div>
+
+`,
+
+chats:`
+
+<h2>Mes chats</h2>
+
+<p>Une petite galerie de mes compagnons préférés.</p>
+
+<div class="gallery">
+
+<img src="images/chat1.jpg" alt="Mon chat">
+
+<img src="images/chat2.jpg" alt="Mon chat">
+
+</div>
+
+`,
+
+photos:`
+
+<h2>Mes photographies</h2>
+
+<p>Quelques images de mon univers et de mes inspirations.</p>
+
+<div class="gallery">
+
+<img src="images/photo1.jpg" alt="Photographie">
+
+<img src="images/photo2.jpg" alt="Photographie">
+
+<img src="images/photo3.jpg" alt="Photographie">
+
+<img src="images/photo4.jpg" alt="Photographie">
+
+</div>
+
+`,
+
+formation:`
+
+<h2>Mon parcours scolaire</h2>
+
+<h3>BTS Économie Sociale Familiale</h3>
+
+<p>Deuxième année · Lycée Blaise Pascal, Colmar.</p>
+
+<h3>Baccalauréat STMG</h3>
+
+<p>Spécialité Gestion-Finance.</p>
+
+<h3>BAFA</h3>
+
+<p>Diplôme obtenu en 2026.</p>
+
+`,
+
+experience:`
+
+<h2>Mes expériences</h2>
+
+<h3>PEP Alsace · Bel-Air, Colmar</h3>
+
+<p>Expérience pratique en animation auprès d'enfants. Participation à la préparation et à la réalisation d'activités collectives et ludiques.</p>
+
+<h3>Stage pratique BAFA</h3>
+
+<p>Expérience auprès d'enfants de 4 à 5 ans et découverte du travail en équipe d'animation.</p>
+
+`,
+
+competences:`
+
+<h2>Mes compétences</h2>
+
+<h3>Relationnel</h3>
+
+<p>Écoute, communication, travail en équipe et adaptation.</p>
+
+<h3>Organisation</h3>
+
+<p>Autonomie, organisation et gestion des activités.</p>
+
+<h3>Informatique</h3>
+
+<p>Word, Excel, outils numériques et PIX.</p>
+
+<h3>Langues</h3>
+
+<p>Anglais et espagnol : notions.</p>
+
+`,
+
+loisirs:`
+
+<h2>Mes centres d'intérêt</h2>
+
+<p>Photographie, lecture, cuisine, séries, cinéma et découverte de nouvelles activités.</p>
+
+`,
+
+contact:`
+
+<h2>Me contacter</h2>
+
+<p>Vous souhaitez échanger avec moi au sujet de ma recherche de stage ?</p>
+
+<div class="notice">
+
+E-mail : <a href="mailto:TON-EMAIL">TON-EMAIL</a>
+
+</div>
+
+<p>Merci pour votre visite.</p>
+
+`
+
+};
+
+function openWindow(id){
+
+ const titles={
+
+ profil:"Présentation.exe",
+
+ chats:"Mes chats",
+
+ photos:"Photographies",
+
+ formation:"Formation",
+
+ experience:"Expériences",
+
+ competences:"Compétences",
+
+ loisirs:"Centres d'intérêt",
+
+ contact:"Contact.exe"
+
+ };
+
+ document.getElementById("windowTitle").textContent=titles[id];
+
+ document.getElementById("windowContent").innerHTML=pages[id];
+
+ document.getElementById("window").style.display="block";
+
+}
+
+function closeWindow(){
+
+ document.getElementById("window").style.display="none";
+
+}
+
+function minimizeWindow(){
+
+ closeWindow();
+
+}
+
+function showStart(){
+
+ document.getElementById("startScreen").style.display="flex";
+
+}
+
+function startComputer(){
+
+ document.getElementById("progress").style.width="100%";
+
+ setTimeout(()=>{
+
+  document.getElementById("startScreen").style.display="none";
+
+ },900);
+
+}
+
+function updateClock(){
+
+ document.getElementById("clock").textContent=
+
+ new Date().toLocaleTimeString("fr-FR",{
+
+ hour:"2-digit",minute:"2-digit"
+
+ });
+
+}
+
+updateClock();
+
+setInterval(updateClock,30000);
+
+</script>
+
+</body>
+
+</html>
